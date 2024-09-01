@@ -1,33 +1,39 @@
 <% layout('boilerplate') %>
-<body>  
-  <h2 class="offset-3 pt-4">Edit your Listing</h2><br>
-  <form method="post" action="http://localhost:8080/listings/<%=result._id%>" class="row g-3 w-50 offset-3" enctype="multipart/form-data">
-    <div class="col-12">
-      <label for="title" class="form-label">Title</label>
-      <input type="text" name="title" value="<%=result.title%>" class="form-control" id="title" placeholder="Add a catchy title...">
-    </div>
-    <div class="col-12">
-      <label for="area" class="form-label">Description</label>
-      <textarea name="description" class="form-control" id="area" cols="30" rows="2"><%= result.desc %></textarea>
-    </div>
-    <div class="col-12">
-      <label for="image" class="form-label">Image</label>
-      <input name="imageUrl" value="<%=result.image.url%>" type="file" class="form-control" id="image" placeholder="Enter image url/link">
-    </div>
-    <div class="col-md-6">
-      <label for="price" class="form-label">Price</label>
-      <input name="price" value="<%=result.price%>" name="" type="number" class="form-control" id="price" placeholder="1800">
-    </div>
-    <div class="col-md-6">
-      <label for="country" class="form-label">Country</label>
-      <input name="country" value="<%=result.country%>" type="text" class="form-control" id="country" placeholder="India">
-    </div>
-    <div class="col-12">
-      <label for="location" class="form-label">Location</label>
-      <input name="location" value="<%=result.location%>" type="text" class="form-control" id="location" placeholder="Jaipur, Rajasthan">
-    </div>
-    <div class="col-12 mt-4">
-      <button type="submit" class="btn btn-warning col-2 mt-2">Save</button>
-    </div>
-  </form>
-</body>
+
+  <body>
+    <h2 class="offset-3 pt-4">Edit your Listing</h2><br>
+    <form method="post" action="/listings/<%=result._id%>" class="row g-3 w-50 offset-3" enctype="multipart/form-data">
+      <div class="col-12">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" name="title" value="<%=result.title%>" class="form-control" id="title"
+          placeholder="Add a catchy title...">
+      </div>
+      <div class="col-12">
+        <label for="area" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="area" cols="30" rows="2"><%= result.desc %></textarea>
+      </div>
+      <div class="col-12">
+        <label for="image" class="form-label">Image</label>
+        <input name="imageUrl" value="<%=result.image.url%>" type="file" class="form-control" id="image"
+          placeholder="Enter image url/link">
+      </div>
+      <div class="col-md-6">
+        <label for="price" class="form-label">Price</label>
+        <input name="price" value="<%=result.price%>" name="" type="number" class="form-control" id="price"
+          placeholder="1800">
+      </div>
+      <div class="col-md-6">
+        <label for="country" class="form-label">Country</label>
+        <input name="country" value="<%=result.country%>" type="text" class="form-control" id="country"
+          placeholder="India">
+      </div>
+      <div class="col-12">
+        <label for="location" class="form-label">Location</label>
+        <input name="location" value="<%=result.location%>" type="text" class="form-control" id="location"
+          placeholder="Jaipur, Rajasthan">
+      </div>
+      <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-warning col-2 mt-2">Save</button>
+      </div>
+    </form>
+  </body>
