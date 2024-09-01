@@ -1,0 +1,73 @@
+<% layout('boilerplate') %>
+
+  <body>
+    <h2 class="offset-3 pt-4">Create a New Listing</h2><br>
+    <form method="post" action="http://localhost:8080/listings" class="row g-3 w-50 offset-3 needs-validation"
+      novalidate enctype="multipart/form-data">
+      <div class="col-12">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" required name="title" class="form-control" id="title" placeholder="Add a catchy title...">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please write a valid title.
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="area" class="form-label">Description</label>
+        <textarea name="description" required class="form-control" id="area" cols="30" rows="2"></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="image" class="form-label">Image</label>
+        <input name="imageUrl" type="file" class="form-control" id="image" >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="price" class="form-label">Price</label>
+        <input name="price" name="" type="text" class="form-control" id="price" placeholder="1800">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="country" class="form-label">Country</label>
+        <input name="country" type="text" class="form-control" id="country" placeholder="India">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="col-12">
+        <label for="location" class="form-label">Location</label>
+        <input name="location" type="text" class="form-control" id="location" placeholder="Jaipur, Rajasthan">
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+
+      </div>
+      <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-danger">Add</button>
+      </div>
+    </form>
+  </body>
+  

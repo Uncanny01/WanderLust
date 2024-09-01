@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary py-3 fs-5" id="navigation">
+  <div class="container-fluid">
+    <span class="material-symbols-outlined text-danger fs-2">
+      explore
+    </span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav">
+          <a class="nav-link" aria-current="page" href="/listings">Home</a>
+          <a class="nav-link" href="/listings">All Listings</a>
+          <a class="nav-link" href="http://localhost:8080/listings/add">Add New</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if(!user) {%>
+          <a class="nav-link" href="/user/signup">Sign Up</a>
+          <a class="nav-link" href="/user/login">Log In</a>
+        <% } else { %>
+          <a class="nav-link" href="/user/logout">Log Out</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

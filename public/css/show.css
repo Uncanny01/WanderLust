@@ -1,0 +1,50 @@
+.show-list-container{
+  display: flex;
+  justify-content: center;
+}
+.show-list-child
+{
+  width: 40%;
+  overflow: hidden;
+}
+.show-list-image{
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/7;
+  border-radius: 10px;
+}
+.block
+{
+  display: block;
+}
+
+.h6-margin{
+  margin-bottom: 0px;
+}
+
+.btns
+{
+  margin-top: 10px;
+  display: flex;
+  column-gap: 40px;
+}
+
+/* .reviews{ */
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* gap: 20px; */
+/* } */
+
+.review
+{
+  border: 1px solid rgba(0, 0, 0, 0.232);
+  border-radius: 5px;
+  /* flex-grow: 1; */
+  padding: 10px;
+}
+
+.rating
+{
+  display: flex;
+  justify-content: space-between;
+}

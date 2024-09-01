@@ -1,0 +1,27 @@
+<% layout('boilerplate') %>
+
+<script>
+  let latitude=0;
+  let longitude=0;
+  function successCallback(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  }
+  navigator.geolocation.getCurrentPosition(successCallback);  
+</script>
+
+<h2 class="offset-3">LogIn to WanderLust</h2><br>
+<form method="post" action="/user/login" class="row needs-validation"
+  novalidate>
+  <div class="col-6 offset-3 mb-3">
+    <label for="username" class="form-label">Username: </label>
+    <input type="text" required name="username" class="form-control" id="username" placeholder="Enter your username... ">
+  </div>
+  <div class="col-6 offset-3 mb-3">
+    <label for="password" class="form-label">Password: </label>
+    <input type="password" required name="password" class="form-control" id="password" placeholder="Enter your password... ">
+  </div>
+  <div class="col-6 offset-3">
+    <button type="submit" class="btn btn-success">LogIn</button>
+  </div>
+</form>

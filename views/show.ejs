@@ -1,0 +1,120 @@
+<%- layout("boilerplate") %>
+
+<script>
+  const coords = <%- JSON.stringify(result.geometry) %>
+</script>
+
+  <body>
+    <div class="show-list-container">
+      <div class="show-list-child">
+        <h3>
+          <%= result.title %>
+        </h3>
+        <img src="<%= result.image.url %>" class="show-list-image">
+        <span class="h6-margin my-2">Owned by -> <%= result.owner.username %></span>
+        <h6 class="h6-margin my-2">
+          <%= result.desc %>
+        </h6>
+        <span class="block">₹<%= result.price.toLocaleString("en-IN") %>/night</span>
+        <span class="block">
+          <%= result.location %>
+        </span>
+        <span class="block">
+          <%= result.country %>
+        </span>
+        <% if(user && user._id.equals(result.owner._id)){%>
+          <div class="btns">
+            <a href="http://localhost:8080/listings/<%= result._id %>/edit" class="btn btn-secondary col-md-4">Edit</a>
+            <form method="post" action="http://localhost:8080/listings/<%= result._id %>?_method=DELETE"
+              class="col-md-8">
+              <button class="btn btn-danger col-md-5">Delete</button>
+            </form>
+          </div>
+          <% } if(user) {%>
+            <hr class="my-5">
+            <div class="reviewForm">
+              <h3>Leave a review</h3>
+              <form method="POST" action="/listings/<%= result.id %>/reviews" novalidate class="needs-validation">
+                <div class="form-container mt-3">
+                  <label class="form-label" for="rating">Rating: </label>
+                  <fieldset class="starability-grow">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked
+                      aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+                </div>
+                <div class="form-container mb-3">
+                  <label class="form-label" for="comment">Comment: </label>
+                  <textarea required class="form-control" name="comment" id="comment" cols="5"></textarea>
+                  <div class="invalid-feedback">
+                    Can not submit empty reveiew.
+                  </div>
+                </div>
+                <button class="btn btn-outline-success">Submit</button>
+              </form>
+            </div>
+            <% } %>
+              <hr class="my-5">
+              <h3 class="d-inline-block mb-4">Reviews: </h3>
+              <% if(!user) { %>
+                ( <a href="/user/login" class="text-secondary">Login to add a review</a> )
+                <% } %>
+                  <% if(result.reviews.length===0){ %>
+                    <h6>No reviews yet.</h6>
+                    <u>Be the first one to add.</u>
+                    <% } %>
+                      <%for(let review of result.reviews) {%>
+                        <div class="card mb-3 shadow">
+                          <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                              <h5 class="card-title mb-0">
+                                <%= review.author.username[0].toUpperCase() + review.author.username.slice(1) %>
+                              </h5>
+                              <div class="text-warning">
+                                <% let x=5; while(x-- !=0) { if(review.rating>0)
+                                  {
+                                  %>
+                                  <span>&#9733;</span>
+                                  <% } else { %>
+                                    <span>&#9734;</span>
+                                    <% } review.rating--; } %>
+                              </div>
+                            </div>
+                            <p class="card-text mt-3">
+                              <%= review.comment %>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <p class="card-text mb-0"><small class="text-muted">Reviewed on: <%const
+                                    timestamp=review.createdAt; const date=new Date(parseInt(timestamp)); %>
+                                    <%= date.toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
+                                      year: 'numeric' }) %></small></p>
+                              <% if(user && user._id.equals(review.author._id)) { %>
+                                <form action="/listings/<%= result.id %>/reviews/<%= review.id %>?_method=DELETE"
+                                  method="POST">
+                                  <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                                <% } %>
+                            </div>
+                          </div>
+                        </div>
+                        <%}%>
+                          <div>
+                            <hr class="my-5">
+                            <h3>Where you'll be</h3>
+                            <div id="map"></div>
+                          </div>
+      </div>
+    </div>
+    </body>
+    
+  <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+      ({ key: "<%= mapKey %>", v: "weekly" });</script>
