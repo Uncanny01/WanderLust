@@ -1,8 +1,10 @@
 <%- layout("boilerplate") %>
 
   <script>
-    let coords = <%- JSON.stringify(result.geometry) %>
+    const coords = <%- JSON.stringify(result.geometry) %>
+    console.log(coords);
   </script>
+  <script src="/js/map.js"></script>
 
   <body>
     <div class="show-list-container">
