@@ -1,7 +1,7 @@
 <%- layout("boilerplate") %>
 
   <script>
-    const coords = <% - JSON.stringify(result.geometry) %>
+    let coords = <%- JSON.stringify(result.geometry) %>
   </script>
 
   <body>
@@ -62,55 +62,55 @@
               </form>
             </div>
             <% } %>
-              <hr class="my-5">
-              <h3 class="d-inline-block mb-4">Reviews: </h3>
-              <% if(!user) { %>
-                ( <a href="/user/login" class="text-secondary">Login to add a review</a> )
-                <% } %>
-                  <% if(result.reviews.length===0){ %>
-                    <h6>No reviews yet.</h6>
-                    <u>Be the first one to add.</u>
-                    <% } %>
-                      <%for(let review of result.reviews) {%>
-                        <div class="card mb-3 shadow">
-                          <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                              <h5 class="card-title mb-0">
-                                <%= review.author.username[0].toUpperCase() + review.author.username.slice(1) %>
-                              </h5>
-                              <div class="text-warning">
-                                <% let x=5; while(x-- !=0) { if(review.rating>0)
-                                  {
-                                  %>
-                                  <span>&#9733;</span>
-                                  <% } else { %>
-                                    <span>&#9734;</span>
-                                    <% } review.rating--; } %>
-                              </div>
-                            </div>
-                            <p class="card-text mt-3">
-                              <%= review.comment %>
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <p class="card-text mb-0"><small class="text-muted">Reviewed on: <%const
-                                    timestamp=review.createdAt; const date=new Date(parseInt(timestamp)); %>
-                                    <%= date.toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
-                                      year: 'numeric' }) %></small></p>
-                              <% if(user && user._id.equals(review.author._id)) { %>
-                                <form action="/listings/<%= result.id %>/reviews/<%= review.id %>?_method=DELETE"
-                                  method="POST">
-                                  <button class="btn btn-outline-danger btn-sm">Delete</button>
-                                </form>
-                                <% } %>
-                            </div>
-                          </div>
-                        </div>
-                        <%}%>
-                          <div>
-                            <hr class="my-5">
-                            <h3>Where you'll be</h3>
-                            <div id="map"></div>
-                          </div>
+            <hr class="my-5">
+            <h3 class="d-inline-block mb-4">Reviews: </h3>
+            <% if(!user) { %>
+              ( <a href="/user/login" class="text-secondary">Login to add a review</a> )
+            <% } %>
+            <% if(result.reviews.length===0){ %>
+              <h6>No reviews yet.</h6>
+              <u>Be the first one to add.</u>
+            <% } %>
+            <%for(let review of result.reviews) {%>
+              <div class="card mb-3 shadow">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                      <%= review.author.username[0].toUpperCase() + review.author.username.slice(1) %>
+                    </h5>
+                    <div class="text-warning">
+                      <% let x=5; while(x-- !=0) { if(review.rating>0)
+                        {
+                        %>
+                        <span>&#9733;</span>
+                        <% } else { %>
+                          <span>&#9734;</span>
+                          <% } review.rating--; } %>
+                    </div>
+                  </div>
+                  <p class="card-text mt-3">
+                    <%= review.comment %>
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <p class="card-text mb-0"><small class="text-muted">Reviewed on: <%const
+                          timestamp=review.createdAt; const date=new Date(parseInt(timestamp)); %>
+                          <%= date.toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
+                            year: 'numeric' }) %></small></p>
+                    <% if(user && user._id.equals(review.author._id)) { %>
+                      <form action="/listings/<%= result.id %>/reviews/<%= review.id %>?_method=DELETE"
+                        method="POST">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                      </form>
+                      <% } %>
+                  </div>
+                </div>
+              </div>
+            <%}%>
+          <div>
+            <hr class="my-5">
+            <h3>Where you'll be</h3>
+            <div id="map"></div>
+          </div>
       </div>
     </div>
   </body>

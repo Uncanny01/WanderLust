@@ -2,6 +2,9 @@
 
   <body>
     <div class="cards-container">
+      <% if(listings.length === 0){ %>
+          <h1>Create your listings</h1>
+      <% } %>
       <% for(let list of listings){ %>
 
         <div class="cards">
